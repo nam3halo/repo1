@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404: Герой не найден — классическая литература встречается с цифровой эпохой.">
+  <title>404: Герой не найден</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f3ecdf;
+      --paper-light: #fbf7ef;
+      --ink: #292720;
+      --muted: #6e685c;
+      --red: #8f382d;
+      --red-dark: #67271f;
+      --green: #45534a;
+      --line: #d9cfbd;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "Inter", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 82px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .serif {
+      font-family: var(--serif);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin: 0 0 18px;
+      font: 600 clamp(34px, 5vw, 58px)/1.12 var(--serif);
+      letter-spacing: -.03em;
+    }
+
+    .section-intro {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Навигация */
+    .header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid rgba(41, 39, 32, .12);
+      background: rgba(243, 236, 223, .94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--red);
+      font: 700 19px var(--serif);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    /* Главный экран */
+    .hero {
+      min-height: 650px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(30, 29, 25, .82), rgba(30, 29, 25, .28)),
+        url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=2000&q=85")
+        center 45% / cover;
+      color: var(--paper-light);
+    }
+
+    .hero-content {
+      padding: 100px 0;
+      animation: rise .8s ease both;
+    }
+
+    .hero .eyebrow {
+      color: #e7b7a6;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font: 600 clamp(54px, 9vw, 112px)/.98 var(--serif);
+      letter-spacing: -.055em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #e5b9a6;
+      font-style: italic;
+    }
+
+    .hero-text {
+      max-width: 560px;
+      margin: 28px 0 32px;
+      color: #f0e8dc;
+      font-size: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      border: 1px solid var(--red);
+      border-radius: 2px;
+      background: var(--red);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--red-dark);
+    }
+
+    .button-light {
+      border-color: rgba(255,255,255,.65);
+      background: transparent;
+    }
+
+    .button-light:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    /* О проекте */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr .82fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .about-image {
+      position: relative;
+      min-height: 430px;
+    }
+
+    .about-image img {
+      height: 430px;
+      border-radius: 2px;
+    }
+
+    .image-caption {
+      position: absolute;
+      right: -18px;
+      bottom: 22px;
+      max-width: 230px;
+      padding: 16px 20px;
+      background: var(--green);
+      color: white;
+      font: italic 17px/1.45 var(--serif);
+    }
+
+    /* События */
+    .events {
+      background: var(--paper-light);
+    }
+
+    .event-list {
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .event-date {
+      color: var(--red);
+      font: 600 19px var(--serif);
+    }
+
+    .event h3 {
+      margin: 0 0 5px;
+      font: 600 23px var(--serif);
+    }
+
+    .event p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Галерея */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      grid-template-rows: 230px 230px;
+      gap: 16px;
+      margin-top: 42px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--line);
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      transition: transform .45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item a {
+      position: absolute;
+      inset: 0;
+      display: block;
+      text-indent: -9999px;
+    }
+
+    /* Цитата */
+    .quote-section {
+      padding: 100px 20px;
+      background: var(--green);
+      color: var(--paper-light);
+      text-align: center;
+    }
+
+    .quote-mark {
+      color: #d9a895;
+      font: 80px/.7 var(--serif);
+    }
+
+    blockquote {
+      max-width: 850px;
+      margin: 20px auto 14px;
+      font: italic clamp(28px, 5vw, 48px)/1.3 var(--serif);
+    }
+
+    .quote-author {
+      color: #ded5c7;
+      font-size: 14px;
+    }
+
+    /* Контакты */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1fr;
+      gap: 70px;
+    }
+
+    .contact-details {
+      color: var(--muted);
+    }
+
+    .contact-details a {
+      color: var(--red);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-form label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: var(--paper-light);
+      color: var(--ink);
+      font: 16px var(--sans);
+    }
+
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
+
+    /* Подвал */
+    .footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer a {
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--red);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 12px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-links {
+        gap: 10px 18px;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .about-image img {
+        height: 350px;
+      }
+
+      .about-image {
+        min-height: 350px;
+      }
+
+      .image-caption {
+        right: 10px;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 230px 180px 180px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav container" aria-label="Главная навигация">
+      <a class="brand" href="#top">404: Герой не найден</a>
+      <div class="nav-links">
+        <a href="#about">О проекте</a>
+        <a href="#events">События</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-content">
+        <p class="eyebrow">Матрица: перезагрузка классики</p>
+        <h1>404:<span>Герой не найден</span></h1>
+        <p class="hero-text">
+          Что, если герои классики однажды окажутся в цифровом мире?
+          Переосмысливаем литературу — без потери её голоса.
+        </p>
+        <a class="button button-light" href="#about">Исследовать проект</a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">О проекте</p>
+          <h2 class="section-title">Классика входит в новую реальность</h2>
+          <p>
+            «404: Герой не найден» — творческий проект о встрече русской
+            литературы и цифровой эпохи. Знакомые персонажи, писатели и
+            поэты здесь становятся отправной точкой для новых историй.
+          </p>
+          <p>
+            Сайт объединяет слово, визуальный образ и современные технологии.
+            Он приглашает взглянуть на литературное наследие иначе и найти
+            в классических произведениях темы, близкие сегодняшнему читателю.
+          </p>
+          <a class="button" href="#events">Посмотреть программу</a>
+        </div>
+
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85"
+            alt="Открытая книга и рукописные заметки на столе"
+          >
+          <div class="image-caption">«Каждая книга — дверь в другую реальность»</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section events" id="events">
+      <div class="container">
+        <p class="eyebrow">Программа</p>
+        <h2 class="section-title">Неделя событий</h2>
+        <p class="section-intro">
+          Интегрированная предметная неделя проходит с 9 по 13 ноября 2026 года.
+          Подробности программы можно обновить по информации организаторов.
+        </p>
+
+        <div class="event-list">
+          <article class="event">
+            <div class="event-date">9–12 ноября</div>
+            <div>
+              <h3>Конкурс сайтов «404: Герой не найден»</h3>
+              <p>Одностраничный сайт о литературном герое, писателе или поэте в цифровую эпоху.</p>
+            </div>
+          </article>
+
+          <article class="event">
+            <div class="event-date">До 12 ноября</div>
+            <div>
+              <h3>Конкурс комиксов «Комиксануло»</h3>
+              <p>Авторские истории по мотивам классики или о взаимодействии человека с технологиями.</p>
+            </div>
+          </article>
+
+          <article class="event">
+            <div class="event-date">13 ноября</div>
+            <div>
+              <h3>Квест «Матрица: перезагрузка классики»</h3>
+              <p>Командное прохождение тематических станций с заданиями по литературе и цифровой культуре.</p>
+            </div>
+          </article>
+
+          <article class="event">
+            <div class="event-date">В течение недели</div>
+            <div>
+              <h3>«Ctrl + селфи» и «Неон цитат»</h3>
+              <p>Фотоконкурс и творческая мастерская по созданию открыток с цитатами классиков.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <p class="eyebrow">Галерея / вдохновение</p>
+        <h2 class="section-title">Между страницей и экраном</h2>
+        <p class="section-intro">
+          Книги, рукописи и детали, из которых складывается визуальный мир проекта.
+          Нажмите на изображение, чтобы открыть его отдельно.
+        </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85"
+              alt="Стеллажи с книгами в библиотеке"
+            >
+            <a href="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=90" target="_blank" rel="noopener" aria-label="Открыть фотографию библиотеки">Открыть изображение</a>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=85"
+              alt="Письменный стол с бумагой"
+            >
+            <a href="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=90" target="_blank" rel="noopener" aria-label="Открыть фотографию письменного стола">Открыть изображение</a>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=800&q=85"
+              alt="Книга и тёплый свет"
+            >
+            <a href="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1600&q=90" target="_blank" rel="noopener" aria-label="Открыть фотографию книги">Открыть изображение</a>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=800&q=85"
+              alt="Книги на полке"
+            >
+            <a href="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1600&q=90" target="_blank" rel="noopener" aria-label="Открыть фотографию книг на полке">Открыть изображение</a>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=85"
+              alt="Открытая книга крупным планом"
+            >
+            <a href="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1600&q=90" target="_blank" rel="noopener" aria-label="Открыть фотографию открытой книги">Открыть изображение</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section" aria-label="Литературная цитата">
+      <div class="quote-mark" aria-hidden="true">“</div>
+      <blockquote>
+        Чтение — вот лучшее учение.
+      </blockquote>
+      <div class="quote-author">А. С. Пушкин</div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Контакты</p>
+          <h2 class="section-title">Есть идея?</h2>
+          <p class="contact-details">
+            Напишите организаторам или расскажите, какого героя классики
+            вы бы перенесли в цифровую эпоху.
+          </p>
+          <p class="contact-details">
+            Email:
+            <a href="mailto:evdokimova.viktosha@gmail.com">
+              evdokimova.viktosha@gmail.com
+            </a>
+          </p>
+          <p class="contact-details">
+            Для участия в конкурсе сайт нужно отправить на указанный email,
+            подписав письмо ФИО и номером группы.
+          </p>
+        </div>
+
+        <form class="contact-form" action="#" method="get">
+          <label>
+            Имя
+            <input type="text" name="name" placeholder="Как к вам обращаться" required>
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" placeholder="name@example.com" required>
+          </label>
+
+          <label>
+            Сообщение
+            <textarea name="message" placeholder="Напишите сообщение…" required></textarea>
+          </label>
+
+          <button class="button" type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 «404: Герой не найден» Алексеев 121-КС-25</span>
+      <div class="footer-links">
+        <a href="#about">О проекте</a>
+        <a href="#events">События</a>
+        <a href="#gallery">Галерея</a>
+        <a href="mailto:evdokimova.viktosha@gmail.com">Связаться</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
